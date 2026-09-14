@@ -44,6 +44,11 @@ Maschine zählt weiterhin nur, ob der Begriff überhaupt dasteht.
 Sparsam einsetzen. Fünf gefettete Begriffe lenken, fünfzehn sehen aus wie ein
 Textmarker-Unfall.
 
+**Im Kurzprofil wird bewusst nicht gefettet**, auch wenn die Begriffe dort
+stehen. Das Kurzprofil wird gelesen, die Aufzählungen werden überflogen — und
+nur beim Überfliegen hilft eine Hervorhebung. Für die Maschine ändert das
+ohnehin nichts, für sie zählt allein, dass der Begriff überhaupt dasteht.
+
 **Die Rollenzeile beschreibt dich, nicht die Stelle.** «Kaufmännischer
 Sachbearbeiter mit IT-Kompetenz» ist richtig. Den Titel der Ausschreibung dort
 hineinzuschreiben, obwohl man den Beruf nie ausgeübt hat, ist keine
