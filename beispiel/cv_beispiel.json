@@ -1,0 +1,105 @@
+{
+  "_hinweis": "Erfundene Person. Als Vorlage kopieren und mit eigenen, belegbaren Angaben füllen. Felder mit _ am Anfang werden ignoriert.",
+
+  "firstname": "Andrea",
+  "lastname": "Muster",
+  "name": "Andrea Muster",
+  "role": "Kaufmännische Sachbearbeiterin mit IT-Kompetenz",
+  "photo": "foto_portrait.png",
+
+  "contact": [
+    "Musterstrasse 1, 8000 Musterstadt",
+    "+41 79 000 00 00",
+    "andrea.muster@example.ch",
+    "example.ch",
+    "github.com/example"
+  ],
+
+  "personal": [
+    ["Geburtsdatum", "01.01.1990"],
+    ["Wohnort", "8000 Musterstadt"],
+    ["Familienstand", "Ledig"],
+    ["Führerausweis", "Kategorie B"]
+  ],
+
+  "profile": "Kaufmännisch ausgebildete Sachbearbeiterin mit vier Jahren Kundenberatung im telefonischen und schriftlichen Erstkontakt. Routiniert in Administration, Offert- und Rechnungswesen sowie im Umgang mit CRM-Systemen, vertraulichen Daten und Microsoft 365.",
+
+  "experience": [
+    {
+      "title": "Sachbearbeiterin Kundendienst",
+      "employer": "Muster Service AG",
+      "location": "Musterstadt",
+      "date": "01/2022 – heute",
+      "bullets": [
+        "Kundenbetreuung im Erstkontakt via Telefon und E-Mail",
+        "Erfassung von Aufträgen und Mutationen, Bearbeitung von Rechnungs- und Kündigungsanfragen",
+        "Falldokumentation im Ticketing-System und laufende Stammdatenpflege",
+        "Umgang mit vertraulichen Kundendaten unter Einhaltung der Datenschutzrichtlinien"
+      ]
+    },
+    {
+      "title": "Kaufmännische Angestellte",
+      "tag": "Nebenprojekt",
+      "employer": "Beispiel Gewerbe GmbH",
+      "location": "Nebenprojekt neben der Festanstellung · Musterstadt",
+      "date": "01/2024 – heute",
+      "bullets": [
+        "Administration des Betriebs von der Offerte über die Rechnung bis zur Buchhaltung",
+        "Eigenverantwortliche Termin- und Auftragsplanung"
+      ]
+    },
+    {
+      "title": "Mitarbeiterin Verkauf",
+      "employer": "Muster Detailhandel AG",
+      "location": "Musterstadt",
+      "date": "2016 – 2021",
+      "bullets": [
+        "Beratung und Verkauf im Ladengeschäft",
+        "Kassenwesen, Auftragserfassung und allgemeine Büroarbeiten"
+      ]
+    }
+  ],
+
+  "education": [
+    {"title": "Handelsschule mit Diplom", "sub": "Musterschule", "date": "2014 – 2015"},
+    {"title": "Cambridge English First – Niveau B2", "sub": "", "date": "12/2014"}
+  ],
+
+  "skills_detail_title": "Kaufmännische & digitale Kompetenzen",
+  "skills_detail_layout": "liste",
+  "skills_detail": [
+    {"title": "Microsoft 365 & Office", "bullets": [
+      "Word, Excel, PowerPoint, Outlook, Teams – Korrespondenz, Auswertungen und Offerten"
+    ]},
+    {"title": "Administration & Sachbearbeitung", "bullets": [
+      "Offert- und Rechnungswesen, Auftragsabwicklung, Terminplanung, Aktenführung"
+    ]},
+    {"title": "Kundenkontakt & Beratung", "bullets": [
+      "Beratung am Telefon und per E-Mail, Reklamationsbearbeitung, Kundenbindung"
+    ]},
+    {"title": "Daten & Systeme", "bullets": [
+      "CRM- und Ticketing-Systeme, Stammdatenpflege, Datenschutz, Zehnfingersystem"
+    ]}
+  ],
+
+  "skills_title": "Sprachen & Persönliches",
+  "skills": [
+    ["Sprachen", "Deutsch Muttersprache, Englisch B2, Französisch Grundkenntnisse"],
+    ["Stärken", "Strukturierte Arbeitsweise, Detailgenauigkeit, Serviceorientierung"],
+    ["Interessen", "Musik, Wandern, Fotografie"],
+    ["Referenz", "Auf Anfrage"]
+  ],
+
+  "kpis": [
+    ["Kundenzufriedenheit", "9.2 / 10"],
+    ["Erstlösungsquote", "76 %"],
+    ["Weiterempfehlung NPS", "68"]
+  ],
+  "kpi_note": "Eigene Auswertung, Januar 2024 bis Dezember 2025 · 420 Kundenbewertungen",
+
+  "awards_title": "Auszeichnungen & Zertifikate",
+  "awards": [
+    "Beste Beraterin im Team 2024",
+    "Zertifikat «Telefonische Kundenberatung» (2023)"
+  ]
+}

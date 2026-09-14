@@ -1,0 +1,21 @@
+# Eigene Daten gehören nicht ins Repository
+daten/
+ausgabe/
+
+# Persönliche Bilddateien - Platzhalter im Repo, echte Dateien nicht
+generator/unterschrift_echt.png
+generator/nele/foto_echt.png
+
+# Abhängigkeiten
+node_modules/
+__pycache__/
+*.pyc
+
+# Zwischenstände
+*.docx
+*.pdf
+!docs/**/*.pdf
+
+# Betriebssystem
+.DS_Store
+Thumbs.db

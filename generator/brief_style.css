@@ -1,0 +1,79 @@
+/* ============================================================
+   Bewerbungsschreiben
+   Klassisches kaufmaennisches Geschaeftsbriefformat (WeasyPrint)
+   Dezenter Sandton-Akzent passend zum Lebenslauf.
+   Die Hintergrundgrafik wird von brief.py als @page-Regel eingefuegt
+   (Variante ueber BRIEF["grafik"] steuerbar, "keine" schaltet sie ab).
+   ============================================================ */
+
+@page {
+    size: A4;
+    margin: 21mm 25mm 20mm 25mm;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "Carlito";
+    font-size: 11pt;
+    line-height: 14.9pt;
+    color: #000000;
+}
+
+.absender { margin-bottom: 34pt; }
+
+.absender .wer {
+    font-weight: bold;
+    color: #64493E;
+}
+
+.empfaenger { margin-left: 95mm; }
+
+.datum { margin-left: 95mm; margin-top: 22.5pt; }
+
+.betreff {
+    font-weight: bold;
+    margin-top: 28.3pt;
+    color: #64493E;
+}
+
+/* Stellennummer/Referenz rechts in der Betreffzeile, mager und grau. */
+.betreff .stellennr {
+    float: right;
+    font-weight: normal;
+    font-size: 9.5pt;
+    color: #6E6E6E;
+}
+
+/* Variante "bogen_linie": Betreff mit der feinen Sandlinie aus dem Lebenslauf. */
+.v-bogen_linie .betreff {
+    border-bottom: 0.7pt solid #D8BFA0;
+    padding-bottom: 5pt;
+}
+
+.v-bogen_linie .anrede { margin-top: 21pt; }
+
+/* Ohne Grafik bleibt der Betreff schwarz wie im klassischen Geschaeftsbrief. */
+.v-keine .betreff { color: #000000; }
+
+.anrede { margin-top: 19.7pt; }
+
+p { margin-top: 13.6pt; text-align: left; }
+
+.gruss { margin-top: 21pt; }
+
+.sig {
+    display: block;
+    height: 40pt;
+    margin-top: 6pt;
+    margin-bottom: -8pt;
+}
+
+.signatur {
+    margin-top: 4pt;
+    font-weight: bold;
+    color: #64493E;
+}
+
+/* Ohne Grafik bleibt auch die Unterschriftzeile schwarz und mager. */
+.v-keine .signatur { font-weight: normal; color: #000000; }
