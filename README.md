@@ -79,8 +79,8 @@ PowerShell braucht es `npm.cmd install` statt `npm install`.
 generator/
   brief_rl.py            Anschreiben als PDF (ReportLab)
   brief_style.css        Massangaben des Briefes, Referenz für brief_rl.py
-  grafik.py              Hintergrundgrafiken als SVG-Pfade
-  export_brief.py        Briefdaten nach JSON, für die Word-Variante
+  grafik.py              dieselben Hintergrundgrafiken als SVG-Pfade
+  export_brief.py        Briefdaten nach JSON, zum Vergleichen zweier Fassungen
   schriften_einbetten.py bettet Schriften in eine .docx ein
   unterschrift.png       Beispielbild; ohne eigenen Scan wird stattdessen
                          der Name in einer Handschrift gesetzt
@@ -96,7 +96,41 @@ docs/
   stilvorlage.md         wie man die eigene Schreibstimme festhält
   keywords.md            Begriffe aus dem Inserat spiegeln, ohne zu lügen
   setup.md               Installation, Schriften, Stolpersteine
+scripts/
+  rauchtest.mjs          erzeugt beide Beispiele und prüft das Ergebnis
 ```
+
+## Zwei Schalter, die man kennen sollte
+
+**`--kompakt`** verschmälert Seitenränder und Datumsspalte:
+
+```bash
+node word_cv.js ../../daten/cv.json ../../ausgabe/CV.docx --kompakt
+```
+
+Das schafft Textbreite und holt Zeilen zurück, die sonst mit einem einzelnen
+Wort überlaufen. Bevor man Inhalt streicht, um eine Seite einzuhalten, ist das
+der erste Versuch — Kürzen kostet Substanz, dieser Schalter nicht.
+
+**`keywords`** im Lebenslauf-JSON setzt Begriffe aus dem Inserat fett, damit
+sie beim Überfliegen auffallen:
+
+```json
+"keywords": ["Kundendienst", "Offertwesen", "Microsoft 365"]
+```
+
+Gefettet wird nur, wo der Begriff als eigenständiges Wort vorkommt. Wofür das
+gut ist und wo Begriffe hingehören, steht in [`docs/keywords.md`](docs/keywords.md).
+
+## Prüfen, ob alles läuft
+
+```bash
+npm test
+```
+
+Erzeugt beide Beispieldokumente in einem temporären Ordner und prüft, ob etwas
+Brauchbares herauskommt. Fehlt Python oder eine Schrift, wird der betroffene
+Teil übersprungen statt zu scheitern.
 
 ## Eigene Daten
 

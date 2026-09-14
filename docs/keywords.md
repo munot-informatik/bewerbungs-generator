@@ -30,6 +30,20 @@ Ein Begriff wirkt am stärksten, wenn er zweimal vorkommt: einmal im
 Kurzprofil, einmal in einer Station. Dreimal und öfter wirkt gestopft und
 fällt beim menschlichen Lesen unangenehm auf.
 
+**Der Generator kann die Begriffe hervorheben.** Im Lebenslauf-JSON:
+
+```json
+"keywords": ["Kundendienst", "Offertwesen", "Microsoft 365"]
+```
+
+Jeder dieser Begriffe wird im ganzen Dokument fett gesetzt, aber nur, wo er
+als eigenständiges Wort steht — «Datenschutz» färbt nicht das Innere von
+«Datenschutzrichtlinien» ein. Das hilft dem Menschen beim Überfliegen; für die
+Maschine zählt weiterhin nur, ob der Begriff überhaupt dasteht.
+
+Sparsam einsetzen. Fünf gefettete Begriffe lenken, fünfzehn sehen aus wie ein
+Textmarker-Unfall.
+
 **Die Rollenzeile beschreibt dich, nicht die Stelle.** «Kaufmännischer
 Sachbearbeiter mit IT-Kompetenz» ist richtig. Den Titel der Ausschreibung dort
 hineinzuschreiben, obwohl man den Beruf nie ausgeübt hat, ist keine
@@ -58,7 +72,18 @@ Prüfen lässt sich das mit zwei Zeilen:
 pdftotext ausgabe/CV.pdf - | less     # kommt der Text in sinnvoller Reihenfolge?
 ```
 
+`pdftotext` gehört zu poppler. Unter Windows ist das mühsam zu beschaffen;
+dort tut es `pypdfium2` aus pip:
+
+```bash
+python -c "import pypdfium2 as p; d=p.PdfDocument('ausgabe/CV.pdf'); print('\n'.join(d[i].get_textpage().get_text_range() for i in range(len(d))))"
+```
+
 Stimmt die Reihenfolge und sind alle Begriffe da, ist die Datei lesbar.
+
+Der häufigste Befund dabei: ein zweispaltiges Layout, dessen Spalten beim
+Auslesen ineinanderlaufen. Dann steht im Text «Kundenbetreuung via
+TelefonSachbearbeiterin Kundendienst», und genau so liest es die Maschine.
 
 ---
 

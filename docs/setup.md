@@ -53,6 +53,14 @@ npm install
 ### Prüfen, ob alles bereitsteht
 
 ```bash
+npm test
+```
+
+Der Rauchtest erzeugt beide Beispieldokumente in einem temporären Ordner und
+sagt, was funktioniert und was fehlt. Fehlt Python oder eine Schrift, wird der
+betroffene Teil übersprungen statt zu scheitern. Einzeln prüfen geht auch:
+
+```bash
 python3 -c "import reportlab, PIL; print('Python bereit')"
 node -e "require('docx'); console.log('Node bereit')"
 ```
@@ -119,6 +127,10 @@ node word_cv.js ../../beispiel/cv_beispiel.json ../../ausgabe/CV.docx
 ```
 
 Einzige Abhängigkeit ist [`docx`](https://docx.js.org/).
+
+**`--kompakt`** als viertes Argument verschmälert Seitenränder und
+Datumsspalte. Wenn der Lebenslauf um zwei Zeilen auf eine zweite Seite
+überläuft, ist das der erste Versuch — er kostet keine Substanz, Kürzen schon.
 
 **Schriften.** Der Lebenslauf setzt Montserrat in fünf Schnitten voraus:
 Regular, Light, Medium, SemiBold, Bold. Kostenlos bei Google Fonts. Unter

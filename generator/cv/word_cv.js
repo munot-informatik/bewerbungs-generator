@@ -1,7 +1,11 @@
 /**
  * Lebenslauf als Word-Datei
  * =========================
- * Aufruf:  node word_cv_nele.js <master.json> <ausgabe.docx>
+ * Aufruf:  node word_cv.js <daten.json> <ausgabe.docx> [--kompakt]
+ *
+ * --kompakt verschmälert Seitenränder und Datumsspalte. Das schafft Textbreite
+ * und holt Zeilen zurück, die sonst mit einem einzelnen Wort überlaufen —
+ * oft genug, um eine knapp überlaufende Seite wieder einzufangen.
  *
  * Zweispaltig anmutendes, technisch einspaltiges Layout in Braun, Sand und
  * Gold, gesetzt in Montserrat. ATS-freundlich: Name, Kontakt und alle Inhalte
@@ -46,8 +50,31 @@ const INHALT_B = SEITE_B - 2 * M_LR; // Textbreite
 const px = (pt) => Math.round(pt * PT);
 const zeile = (pt) => ({ line: Math.round(pt * PT), lineRule: "exact" });
 
-const daten = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+const quelle = process.argv[2];
 const ausgabe = process.argv[3];
+
+if (!quelle || !ausgabe) {
+  console.error("Aufruf: node word_cv.js <daten.json> <ausgabe.docx> [--kompakt]");
+  console.error("Beispiel: node word_cv.js ../../beispiel/cv_beispiel.json ../../ausgabe/CV.docx");
+  process.exit(1);
+}
+if (!fs.existsSync(quelle)) {
+  console.error("Datendatei nicht gefunden: " + quelle);
+  process.exit(1);
+}
+
+let daten;
+try {
+  daten = JSON.parse(fs.readFileSync(quelle, "utf8"));
+} catch (e) {
+  console.error("Datendatei ist kein gültiges JSON: " + quelle);
+  console.error(e.message);
+  process.exit(1);
+}
+
+// Der Ausgabeordner steht in der .gitignore und fehlt deshalb in einem
+// frischen Klon. Ohne diese Zeile scheitert der erste Aufruf.
+fs.mkdirSync(path.dirname(path.resolve(ausgabe)), { recursive: true });
 
 // ---------- Keyword-Hervorhebung (optional) ----------
 // daten.keywords: Liste von Begriffen, die im Text fett (Montserrat SemiBold)
@@ -415,7 +442,13 @@ const doc = new Document({
   }],
 });
 
-Packer.toBuffer(doc).then((buf) => {
-  fs.writeFileSync(ausgabe, buf);
-  console.log("geschrieben: " + ausgabe);
-});
+Packer.toBuffer(doc)
+  .then((buf) => {
+    fs.writeFileSync(ausgabe, buf);
+    console.log("geschrieben: " + ausgabe);
+  })
+  .catch((e) => {
+    console.error("Konnte " + ausgabe + " nicht schreiben.");
+    console.error(e.message);
+    process.exit(1);
+  });

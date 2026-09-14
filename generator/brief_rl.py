@@ -120,21 +120,66 @@ def umbrechen(c, text, breite, fett=False):
     return zeilen
 
 
+def _flaeche(c, deckung, form):
+    """Eine blasse Sandfläche zeichnen. form() beschreibt den Pfad."""
+    c.saveState()
+    c.setFillColor(SAND)
+    c.setFillAlpha(deckung)
+    p = c.beginPath()
+    form(p)
+    p.close()
+    c.drawPath(p, fill=1, stroke=0)
+    c.restoreState()
+
+
 def bogen(c):
-    """Geschichteter Sandbogen unten rechts, wie in grafik.py."""
+    """Drei ineinanderliegende Viertelkreise in der unteren rechten Ecke."""
     for radius, deckung in ((331, 0.09), (221, 0.11), (123, 0.16)):
-        c.saveState()
-        c.setFillColor(SAND)
-        c.setFillAlpha(deckung)
-        p = c.beginPath()
-        p.moveTo(BREITE, 0)
-        p.lineTo(BREITE, radius)
-        # Viertelkreis um die Blattecke (BREITE, 0): von (BREITE, radius)
-        # nach (BREITE - radius, 0).
-        p.arcTo(BREITE - radius, -radius, BREITE + radius, radius, 90, 90)
-        p.close()
-        c.drawPath(p, fill=1, stroke=0)
-        c.restoreState()
+        def form(p, r=radius):
+            p.moveTo(BREITE, 0)
+            p.lineTo(BREITE, r)
+            # Viertelkreis um die Blattecke (BREITE, 0): von (BREITE, r)
+            # nach (BREITE - r, 0).
+            p.arcTo(BREITE - r, -r, BREITE + r, r, 90, 90)
+        _flaeche(c, deckung, form)
+
+
+def welle(c):
+    """Flache Welle über die gesamte untere Blattkante."""
+    # Alle Werte sind Abstände von der Unterkante, umgerechnet aus den
+    # SVG-Pfaden in grafik.py (dort zählt y von oben).
+    formen = (
+        (0.09, 79.89, (150, 141.89), (330, 35.89), 173.89),
+        (0.13, 29.89, (170, 79.89), (360, -6.11), 99.89),
+    )
+    for deckung, start, s1, s2, ende in formen:
+        def form(p, start=start, s1=s1, s2=s2, ende=ende):
+            p.moveTo(0, 0)
+            p.lineTo(0, start)
+            p.curveTo(s1[0], s1[1], s2[0], s2[1], BREITE, ende)
+            p.lineTo(BREITE, 0)
+        _flaeche(c, deckung, form)
+
+
+def diagonal(c):
+    """Weiche Diagonale von unten rechts gegen die Blattmitte."""
+    for deckung, hoehe, links in ((0.08, 469.89, 232), (0.11, 275.89, 358), (0.16, 110.89, 484)):
+        def form(p, h=hoehe, l=links):
+            p.moveTo(BREITE, 0)
+            p.lineTo(BREITE, h)
+            p.lineTo(l, 0)
+        _flaeche(c, deckung, form)
+
+
+# "bogen_linie" teilt die Form mit "bogen"; sie unterscheiden sich nur in der
+# Auszeichnung des Betreffs, nicht im Hintergrund.
+GRAFIKEN = {
+    "bogen": bogen,
+    "bogen_linie": bogen,
+    "welle": welle,
+    "diagonal": diagonal,
+    "keine": None,
+}
 
 
 class Stift:
@@ -169,8 +214,13 @@ def zeichnen(b, ziel):
     c.setTitle(b["betreff"])
     c.setAuthor(b["signatur"])
 
-    if b.get("grafik", "bogen") != "keine":
-        bogen(c)
+    variante = b.get("grafik", "bogen")
+    if variante not in GRAFIKEN:
+        print(f"Hinweis: Grafikvariante {variante!r} ist unbekannt – gezeichnet wird 'bogen'. "
+              f"Möglich sind: {', '.join(GRAFIKEN)}.")
+        variante = "bogen"
+    if GRAFIKEN[variante] is not None:
+        GRAFIKEN[variante](c)
 
     s = Stift(c)
     s.block(b["absender"], ersteFett=True)
@@ -250,8 +300,21 @@ def zeichnen(b, ziel):
 
 
 def main():
+    if len(sys.argv) != 3:
+        sys.exit(
+            "Aufruf: python brief_rl.py <briefdaten.py> <ausgabe.pdf>\n"
+            "Beispiel: python generator/brief_rl.py beispiel/brief_beispiel.py "
+            "ausgabe/Bewerbung.pdf"
+        )
+
     data_file = Path(sys.argv[1])
+    if not data_file.is_file():
+        sys.exit(f"Briefdaten nicht gefunden: {data_file}")
+
     ziel = Path(sys.argv[2])
+    # Der Ausgabeordner steht in der .gitignore und fehlt deshalb in einem
+    # frischen Klon. Ohne diese Zeile scheitert der erste Aufruf.
+    ziel.parent.mkdir(parents=True, exist_ok=True)
 
     spec = importlib.util.spec_from_file_location("brief_daten", data_file)
     mod = importlib.util.module_from_spec(spec)

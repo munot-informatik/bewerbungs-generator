@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "cv:beispiel": "cd generator/cv && node word_cv.js ../../beispiel/cv_beispiel.json ../../ausgabe/CV_Beispiel.docx"
+    "cv:beispiel": "cd generator/cv && node word_cv.js ../../beispiel/cv_beispiel.json ../../ausgabe/CV_Beispiel.docx",
+    "test": "node scripts/rauchtest.mjs"
   },
   "dependencies": {
     "docx": "^9.7.1"
