@@ -88,10 +88,25 @@ BRIEF_SCHRIFT_BOLD=/pfad/zu/Carlito-Bold.ttf \
 python3 generator/brief_rl.py daten/brief.py ausgabe/Bewerbung.pdf
 ```
 
-**Unterschrift.** `generator/unterschrift.png` ist ein Platzhalter. Ersetze ihn
-durch einen Scan der eigenen Unterschrift, freigestellt, mit transparentem
-Hintergrund, etwa 360 × 125 px. Die Breite rechnet das Skript aus dem
-Seitenverhältnis selbst aus.
+**Unterschrift.** Standardmässig wird **keine** eingesetzt: ohne eigenen Scan
+setzt das Skript den Namen in einer Handschrift. Das ist Absicht — ein
+gezeichneter fremder Schriftzug wäre eine Fälschung, siehe Regel 7 in
+[`regeln.md`](regeln.md).
+
+Den eigenen Scan gibt man in den Briefdaten an, freigestellt, mit
+transparentem Hintergrund, etwa 360 × 125 px:
+
+```python
+BRIEF = {
+    "unterschrift": "daten/unterschrift_echt.png",
+    ...
+}
+```
+
+Relative Pfade gelten ab dem Projektordner. Die Breite rechnet das Skript aus
+dem Seitenverhältnis selbst aus. Als Handschrift wird Caveat oder Dancing
+Script verwendet, unter Windows ersatzweise Segoe Script oder Ink Free; ein
+eigener Pfad lässt sich über `BRIEF_SCHRIFT_HAND` vorgeben.
 
 ---
 

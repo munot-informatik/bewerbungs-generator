@@ -84,6 +84,24 @@ if not SCHRIFT_REGULAR or not SCHRIFT_BOLD:
 pdfmetrics.registerFont(TTFont(SCHRIFT, SCHRIFT_REGULAR))
 pdfmetrics.registerFont(TTFont(SCHRIFT + "-Bold", SCHRIFT_BOLD))
 
+# Handschrift für den Namenszug, wenn kein eigener Unterschriften-Scan
+# vorliegt. Bewusst keine gezeichnete Unterschrift: ein fremder Schriftzug
+# unter einem Brief wäre eine Fälschung.
+SCHRIFT_HAND = schrift_suchen([
+    os.environ.get("BRIEF_SCHRIFT_HAND"),
+    BASE.parent / "daten" / "schriften" / "Caveat-Regular.ttf",
+    BASE.parent / "daten" / "schriften" / "DancingScript-Regular.ttf",
+    "~/.fonts/Caveat-Regular.ttf",
+    "/usr/share/fonts/truetype/google-fonts/Caveat-Regular.ttf",
+    "/usr/share/fonts/truetype/google-fonts/DancingScript-Regular.ttf",
+    "~/Library/Fonts/Caveat-Regular.ttf",
+    r"C:\Windows\Fonts\segoesc.ttf",
+    r"C:\Windows\Fonts\Inkfree.ttf",
+])
+HANDSCHRIFT = "Handschrift" if SCHRIFT_HAND else None
+if SCHRIFT_HAND:
+    pdfmetrics.registerFont(TTFont(HANDSCHRIFT, SCHRIFT_HAND))
+
 
 def umbrechen(c, text, breite, fett=False):
     """Text auf die gegebene Breite umbrechen."""
@@ -189,8 +207,20 @@ def zeichnen(b, ziel):
     s.abstand(21)
     s.zeile(b["gruss"])
 
-    unterschrift = BASE / "unterschrift.png"
-    if b.get("unterschrift") is not False and unterschrift.exists():
+    # Eingesetzt wird ausschliesslich ein eigener Scan, angegeben über
+    # "unterschrift" in den Briefdaten. Ohne eigene Datei wird der Name in
+    # einer Handschrift gesetzt.
+    unterschrift = None
+    if b.get("unterschrift"):
+        kandidat = Path(b["unterschrift"]).expanduser()
+        if not kandidat.is_absolute():
+            kandidat = BASE.parent / kandidat
+        if kandidat.is_file():
+            unterschrift = kandidat
+        else:
+            print(f"Hinweis: {kandidat} nicht gefunden – Name wird in Handschrift gesetzt.")
+
+    if unterschrift:
         # Masse exakt wie .sig in brief_style.css: 40 pt hoch, 6 pt Abstand
         # nach oben, 8 pt negativer Abstand nach unten, dazu 4 pt margin-top
         # der Namenszeile. Netto ragt die Unterschrift 4 pt in die Namenszeile.
@@ -203,6 +233,15 @@ def zeichnen(b, ziel):
         c.drawImage(str(unterschrift), RAND_L, oben - hoehe,
                     width=hoehe * seitenverhaeltnis, height=hoehe, mask="auto")
         s.y = oben - hoehe + 4
+    elif HANDSCHRIFT:
+        s.abstand(12)
+        c.setFont(HANDSCHRIFT, 22)
+        c.setFillColor(SCHWARZ)
+        c.drawString(RAND_L, s.y - 16, b["signatur"])
+        s.y -= 24
+    else:
+        print("Hinweis: keine Handschrift gefunden – es steht nur der gedruckte Name.")
+        s.abstand(8)
 
     s.zeile(b["signatur"], fett=True, farbe=BRAUN)
 

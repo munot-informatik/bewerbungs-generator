@@ -23,7 +23,7 @@ verbietet.
 
 ---
 
-## Die sechs Regeln
+## Die sieben Regeln
 
 **1. Quellenpflicht.** Jede Aussage muss aus einem der Quell-Lebensläufe, aus
 einem Arbeitszeugnis oder aus einer wörtlichen Aussage der Bewerberin stammen.
@@ -51,6 +51,13 @@ bringt eine Einladung und danach ein unangenehmes Gespräch.
 **6. Im Zweifel fragen.** Fehlt ein Beleg für etwas, das die Stelle verlangt,
 wird nachgefragt oder weggelassen. Nicht plausibel klingend ergänzt.
 
+**7. Keine fremde Unterschrift.** Unter den Brief kommt nur ein Schriftzug, den
+die Bewerberin selbst mitgebracht hat. Ein gezeichneter oder generierter
+Namenszug ist keine Gestaltung, sondern eine Fälschung — und eine, die man dem
+Dokument ansieht, sobald jemand zwei Bewerbungen nebeneinanderlegt. Liegt kein
+Scan vor, wird der Name in einer Handschrift gesetzt. Das ist erkennbar ein
+gesetzter Name und behauptet nichts.
+
 ---
 
 ## Was beim Zuschneiden erlaubt ist
@@ -68,6 +75,22 @@ Die Regeln verbieten das Erfinden, nicht das Zuschneiden. Erlaubt bleibt:
    — solange beides stattgefunden hat.
 
 ---
+
+## Weglassen ist nicht Ausdünnen
+
+Die Regeln verbieten das Erfinden. Sie verlangen nicht, den Lebenslauf
+kleinzuschreiben. Wer aus Sorge um die Seitenzahl Stationen zusammenstreicht,
+Aufzählungspunkte halbiert und am Ende eine halbleere Seite abliefert, hat das
+Dokument genauso beschädigt wie jemand, der etwas dazuerfindet — nur in die
+andere Richtung.
+
+**Zwei Seiten sind in Ordnung**, wenn die Quelle so viel hergibt. Bei zwanzig
+Jahren Berufserfahrung sind sie sogar die Regel. Was nicht geht, ist eine
+zweite Seite, die nur zu einem Viertel gefüllt ist: dann gehört der Inhalt
+entweder auf eine Seite verdichtet oder die zweite Seite ehrlich gefüllt.
+
+Gestrichen wird, was für diese Stelle nichts beiträgt — nicht, was gerade
+nicht auf die Seite passt.
 
 ## Lücken, die nicht gefüllt werden
 
@@ -113,6 +136,13 @@ Ein Prompt, der diese Regeln durchsetzt:
 > keine Anforderungen aus dem Inserat in Erfahrung um, die ich nicht habe.
 > Anpassen heisst auswählen, umsortieren und weglassen, nicht neue Punkte
 > schreiben. Wenn etwas fehlt, frag mich oder lass es weg.
+>
+> Streiche nichts nur, damit es auf eine Seite passt. Zwei Seiten Lebenslauf
+> sind in Ordnung, wenn meine Unterlagen so viel hergeben; eine halbleere
+> zweite Seite ist es nicht.
+>
+> Setze keine Unterschrift ein, die ich dir nicht gegeben habe. Ohne meinen
+> eigenen Scan wird mein Name in einer Handschrift gesetzt, nicht gezeichnet.
 
 Dazu die Liste der eigenen Lücken. Und danach trotzdem gegenlesen: Die Regel
 verhindert den Fehler nicht zuverlässig, sie macht ihn nur auffindbar.

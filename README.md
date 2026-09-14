@@ -82,7 +82,8 @@ generator/
   grafik.py              Hintergrundgrafiken als SVG-Pfade
   export_brief.py        Briefdaten nach JSON, für die Word-Variante
   schriften_einbetten.py bettet Schriften in eine .docx ein
-  unterschrift.png       Platzhalter, durch eigene Unterschrift ersetzen
+  unterschrift.png       Beispielbild; ohne eigenen Scan wird stattdessen
+                         der Name in einer Handschrift gesetzt
   cv/
     word_cv.js           Lebenslauf als .docx
     accent_square.png    Akzentquadrat oben links

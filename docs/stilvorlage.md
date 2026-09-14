@@ -87,6 +87,10 @@ Ausschreibung wieder.
 - **Der Arbeitsweg.** Die Adresse steht im Absender. Wer die Fahrzeit
   hinschreibt, macht daraus eine Entschuldigung oder eine Vorleistung.
 - **Erfundene Details.** Siehe [`regeln.md`](regeln.md).
+- **Eine Unterschrift, die nicht die eigene ist.** Kein gezeichneter, kein
+  generierter, kein geliehener Schriftzug. Entweder der eigene Scan oder der
+  Name in einer Handschrift gesetzt — das behauptet nichts und fällt niemandem
+  negativ auf.
 - **Der eigene Ton als Kommentar.** «Um ehrlich zu sein» ist eine
   Regieanweisung und wird gestrichen.
 - Optional: eigene Nebenbetriebe, Hobbys, alles, was im Lebenslauf steht und
@@ -145,4 +149,6 @@ unentschlossen.
 12. Mindestens ein Satz, der schlicht eine Information transportiert, ohne
     gebaut zu sein?
 13. Den Brief neben die Stimmprobe aus Abschnitt 1 halten: dieselbe Person?
-14. Laut lesen. Fliesst es, ohne glatt zu wirken?
+14. Steht unter dem Brief der eigene Schriftzug oder ein gesetzter Name — und
+    nichts Drittes?
+15. Laut lesen. Fliesst es, ohne glatt zu wirken?
