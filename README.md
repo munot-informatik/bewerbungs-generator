@@ -9,7 +9,25 @@ der Code, sondern die Regeln in [`docs/regeln.md`](docs/regeln.md) — sie
 verhindern, dass eine KI beim Zuschneiden auf ein Inserat Erfahrung erfindet,
 die man nicht hat.
 
-![Vorschau Lebenslauf und Anschreiben](assets/vorschau_cv.png)
+| Lebenslauf | Bewerbungsschreiben |
+|---|---|
+| ![Vorschau Lebenslauf](assets/vorschau_cv.png) | ![Vorschau Anschreiben](assets/vorschau_brief.png) |
+
+## Die Dokumentation ist der eigentliche Inhalt
+
+Der Code erzeugt zwei Dateien. Das Schwierige an einer Bewerbung ist aber
+nicht das Setzen, sondern die Frage, was hineingehört und was nicht. Dazu
+liegen vier Texte im Repository, und sie sind unabhängig von diesem
+Werkzeugkasten lesbar:
+
+| | |
+|---|---|
+| [`docs/unterlagen.md`](docs/unterlagen.md) | Der erste Schritt: das Dossier durchsuchen, bevor geschrieben wird. Welche Fragen davor stehen. |
+| [`docs/regeln.md`](docs/regeln.md) | Sieben Regeln gegen erfundene Erfahrung. Warum ein Sprachmodell aus einer Anforderung verlässlich eine Erfahrung macht, und wie man das abstellt. |
+| [`docs/stilvorlage.md`](docs/stilvorlage.md) | Wie man die eigene Schreibstimme festhält, woran man generierten Text erkennt, und ein Kurzcheck vor dem Versand. |
+| [`docs/keywords.md`](docs/keywords.md) | Begriffe aus dem Inserat spiegeln, ohne zu lügen. Was ein Bewerbermanagementsystem liest und was nicht. |
+
+Wer nur eine Datei liest, liest `regeln.md`.
 
 ## Was dabei herauskommt
 
@@ -78,8 +96,8 @@ PowerShell braucht es `npm.cmd install` statt `npm install`.
 ```
 generator/
   brief_rl.py            Anschreiben als PDF (ReportLab)
-  brief_style.css        Massangaben des Briefes, Referenz für brief_rl.py
-  grafik.py              dieselben Hintergrundgrafiken als SVG-Pfade
+  brief_style.css        Massblatt des Briefes, wird nicht ausgeführt
+  grafik.py              Formvorlage der Hintergrundgrafiken als SVG
   export_brief.py        Briefdaten nach JSON, zum Vergleichen zweier Fassungen
   schriften_einbetten.py bettet Schriften in eine .docx ein
   unterschrift.png       Beispielbild; ohne eigenen Scan wird stattdessen

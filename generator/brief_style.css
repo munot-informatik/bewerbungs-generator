@@ -1,9 +1,17 @@
 /* ============================================================
-   Bewerbungsschreiben
-   Klassisches kaufmaennisches Geschaeftsbriefformat (WeasyPrint)
-   Dezenter Sandton-Akzent passend zum Lebenslauf.
-   Die Hintergrundgrafik wird von brief.py als @page-Regel eingefuegt
-   (Variante ueber BRIEF["grafik"] steuerbar, "keine" schaltet sie ab).
+   Bewerbungsschreiben - Massblatt
+
+   ACHTUNG: Diese Datei wird nicht ausgefuehrt. Der Brief entsteht in
+   generator/brief_rl.py, das die Seite direkt mit ReportLab zeichnet.
+
+   Sie bleibt als lesbare Fassung derselben Masse erhalten: Seitenraender,
+   Zeilenhoehen, Einzug des Empfaengerblocks, Groesse der Unterschrift. Wer
+   am Layout etwas aendern will, findet die Werte hier uebersichtlich
+   beieinander und traegt sie dann in brief_rl.py nach. Die Kommentare dort
+   verweisen zurueck auf diese Datei.
+
+   Klassisches kaufmaennisches Geschaeftsbriefformat, dezenter Sandton-Akzent
+   passend zum Lebenslauf.
    ============================================================ */
 
 @page {

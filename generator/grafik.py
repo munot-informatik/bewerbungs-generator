@@ -1,10 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-Hintergrundgrafiken für Bewerbungsschreiben und Lebenslauf.
+Hintergrundgrafiken – Formvorlage.
 
-Jede Variante ist ein SVG in A4-Punktmassen (595.28 x 841.89), das als
-Seitenhintergrund hinter den Brieftext gelegt wird. Der Sandton ist derselbe
-wie im Lebenslauf (#D8BFA0), der Braunton derselbe wie die Namenszeile (#64493E).
+ACHTUNG: Dieses Modul wird zur Laufzeit nicht importiert. Der Brief entsteht in
+generator/brief_rl.py, das dieselben Formen direkt mit ReportLab zeichnet.
+
+Es bleibt als Quelle der Formen erhalten: Die SVG-Pfade hier unten sind die
+lesbare Fassung dessen, was brief_rl.py als Pfadbefehle ausführt. Wer eine
+Variante ändern oder eine neue entwerfen will, tut das am besten hier, wo sich
+das Ergebnis in jedem Browser betrachten lässt, und überträgt die Punkte
+anschliessend. Zu beachten ist dabei nur, dass y im SVG von oben zählt und in
+ReportLab von unten.
+
+Jede Variante ist ein SVG in A4-Punktmassen (595.28 x 841.89). Der Sandton ist
+derselbe wie im Lebenslauf (#D8BFA0), der Braunton derselbe wie die Namenszeile
+(#64493E).
 
 Alle Varianten arbeiten in der unteren rechten Ecke, halten den Kopf des Briefs
 frei und bleiben so blass, dass sie den Text nicht stören.
@@ -22,24 +32,21 @@ Zur Variante gehört jeweils eine Textauszeichnung in brief_style.css
 
 SAND = "#D8BFA0"
 
+# Drei ineinanderliegende Viertelkreise, aussen blass, innen etwas kräftiger.
+_BOGEN = f"""
+      <path d="M595.28 841.89 L595.28 511 A331 331 0 0 0 264 841.89 Z"
+            fill="{SAND}" opacity="0.09"/>
+      <path d="M595.28 841.89 L595.28 621 A221 221 0 0 0 374 841.89 Z"
+            fill="{SAND}" opacity="0.11"/>
+      <path d="M595.28 841.89 L595.28 719 A123 123 0 0 0 472 841.89 Z"
+            fill="{SAND}" opacity="0.16"/>
+"""
+
 _VARIANTEN = {
-    # Drei ineinanderliegende Viertelkreise, aussen blass, innen etwas kräftiger.
-    "bogen": f"""
-      <path d="M595.28 841.89 L595.28 511 A331 331 0 0 0 264 841.89 Z"
-            fill="{SAND}" opacity="0.09"/>
-      <path d="M595.28 841.89 L595.28 621 A221 221 0 0 0 374 841.89 Z"
-            fill="{SAND}" opacity="0.11"/>
-      <path d="M595.28 841.89 L595.28 719 A123 123 0 0 0 472 841.89 Z"
-            fill="{SAND}" opacity="0.16"/>
-    """,
-    "bogen_linie": f"""
-      <path d="M595.28 841.89 L595.28 511 A331 331 0 0 0 264 841.89 Z"
-            fill="{SAND}" opacity="0.09"/>
-      <path d="M595.28 841.89 L595.28 621 A221 221 0 0 0 374 841.89 Z"
-            fill="{SAND}" opacity="0.11"/>
-      <path d="M595.28 841.89 L595.28 719 A123 123 0 0 0 472 841.89 Z"
-            fill="{SAND}" opacity="0.16"/>
-    """,
+    "bogen": _BOGEN,
+    # Gleiche Form; der Unterschied liegt allein in der Auszeichnung des
+    # Betreffs, nicht im Hintergrund.
+    "bogen_linie": _BOGEN,
     # Flache Welle, die über die gesamte Blattbreite laeuft.
     "welle": f"""
       <path d="M0 841.89 L0 762 C 150 700, 330 806, 595.28 668 L595.28 841.89 Z"
