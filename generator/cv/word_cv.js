@@ -330,14 +330,16 @@ inhalt.push(tabelle(daten.education.map((e, i) => {
 
 // Sprachen & Persönliches (kompakter Block zuerst) ...
 const LBL_B = daten.skills_label_width || 3200;
-inhalt.push(sektion(daten.skills_title || "Weitere Fähigkeiten und Kenntnisse"));
-inhalt.push(tabelle(daten.skills.map(([label, wert], i) =>
-  reihe(
-    [new TextRun({ text: label, bold: true, font: "Montserrat", size: sz(16.5), color: DUNKEL })],
-    [new Paragraph({ spacing: { before: 0, after: 0, ...zeile(13) }, children: hl(wert, { font: "Montserrat Light", size: sz(17), color: TEXT }) })],
-    LBL_B, { vor: i === 0 ? 4 : 0, nach: 3 }
-  )
-), LBL_B));
+if (daten.skills && daten.skills.length) {
+  inhalt.push(sektion(daten.skills_title || "Weitere Fähigkeiten und Kenntnisse"));
+  inhalt.push(tabelle(daten.skills.map(([label, wert], i) =>
+    reihe(
+      [new TextRun({ text: label, bold: true, font: "Montserrat", size: sz(16.5), color: DUNKEL })],
+      [new Paragraph({ spacing: { before: 0, after: 0, ...zeile(13) }, children: hl(wert, { font: "Montserrat Light", size: sz(17), color: TEXT }) })],
+      LBL_B, { vor: i === 0 ? 4 : 0, nach: 3 }
+    )
+  ), LBL_B));
+}
 
 // Ausführliche Skills-Liste ...
 if (daten.skills_detail && daten.skills_detail.length) {

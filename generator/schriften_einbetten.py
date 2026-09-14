@@ -16,6 +16,7 @@ GUID, die in fontTable.xml neben der Schrift steht. Genau das macht obfuskieren(
 weiter unten.
 """
 
+import os
 import re
 import shutil
 import sys
@@ -23,34 +24,65 @@ import uuid
 import zipfile
 from pathlib import Path
 
-# Welche Schnitte zu welcher Word-Schriftfamilie gehören.
+BASE = Path(__file__).resolve().parent.parent
+
+# Verzeichnisse, in denen nach den Schriftdateien gesucht wird. Ein eigener
+# Ordner lässt sich über die Umgebungsvariable BEWERBUNG_SCHRIFTEN vorgeben.
+SUCHPFADE = [
+    os.environ.get("BEWERBUNG_SCHRIFTEN"),
+    BASE / "daten" / "schriften",
+    BASE / "schriften",
+    "~/.fonts",
+    "/root/.fonts",
+    "/usr/share/fonts/truetype/google-fonts",
+    "/usr/share/fonts/truetype/crosextra",
+    "~/Library/Fonts",
+    "/Library/Fonts",
+    r"C:\Windows\Fonts",
+    os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Windows\Fonts"),
+]
+
+
+def schrift_finden(dateiname):
+    """Schriftdatei in den bekannten Verzeichnissen suchen."""
+    for ordner in SUCHPFADE:
+        if not ordner:
+            continue
+        pfad = Path(ordner).expanduser() / dateiname
+        if pfad.is_file():
+            return pfad
+    return None
+
+
+# Welche Schnitte zu welcher Word-Schriftfamilie gehören. Angegeben wird nur der
+# Dateiname; gesucht wird in SUCHPFADE.
 SCHRIFTEN = {
     "Poppins": {
-        "embedRegular": "/usr/share/fonts/truetype/google-fonts/Poppins-Regular.ttf",
-        "embedBold": "/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf",
+        "embedRegular": "Poppins-Regular.ttf",
+        "embedBold": "Poppins-Bold.ttf",
     },
     "Poppins Light": {
-        "embedRegular": "/usr/share/fonts/truetype/google-fonts/Poppins-Light.ttf",
+        "embedRegular": "Poppins-Light.ttf",
     },
     "Poppins Medium": {
-        "embedRegular": "/usr/share/fonts/truetype/google-fonts/Poppins-Medium.ttf",
+        "embedRegular": "Poppins-Medium.ttf",
     },
     "Carlito": {
-        "embedRegular": "/usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf",
-        "embedBold": "/usr/share/fonts/truetype/crosextra/Carlito-Bold.ttf",
+        "embedRegular": "Carlito-Regular.ttf",
+        "embedBold": "Carlito-Bold.ttf",
     },
     "Montserrat": {
-        "embedRegular": "/root/.fonts/Montserrat-Regular.ttf",
-        "embedBold": "/root/.fonts/Montserrat-Bold.ttf",
+        "embedRegular": "Montserrat-Regular.ttf",
+        "embedBold": "Montserrat-Bold.ttf",
     },
     "Montserrat Light": {
-        "embedRegular": "/root/.fonts/Montserrat-Light.ttf",
+        "embedRegular": "Montserrat-Light.ttf",
     },
     "Montserrat Medium": {
-        "embedRegular": "/root/.fonts/Montserrat-Medium.ttf",
+        "embedRegular": "Montserrat-Medium.ttf",
     },
     "Montserrat SemiBold": {
-        "embedRegular": "/root/.fonts/Montserrat-SemiBold.ttf",
+        "embedRegular": "Montserrat-SemiBold.ttf",
     },
 }
 
@@ -108,9 +140,10 @@ def einbetten(docx_pfad):
         if f'w:name="{familie}"' not in font_table:
             continue
         eintraege = ""
-        for element, quelldatei in schnitte.items():
-            if not Path(quelldatei).exists():
-                print(f"  fehlt: {quelldatei}")
+        for element, dateiname in schnitte.items():
+            quelldatei = schrift_finden(dateiname)
+            if quelldatei is None:
+                print(f"  fehlt: {dateiname} (in keinem der Suchpfade gefunden)")
                 continue
             nummer += 1
             guid = "{%s}" % str(uuid.UUID(int=nummer * 0x1111111111111111111111111111111)).upper()

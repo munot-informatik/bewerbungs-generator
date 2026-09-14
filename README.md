@@ -23,6 +23,37 @@ Linienstärke und eine Bildsprache, ohne gleich auszusehen. Der Lebenslauf ist
 einspaltig und maschinenlesbar, das Anschreiben ein klassischer
 Geschäftsbrief.
 
+## Voraussetzungen
+
+Das hier ist kein fertiges Programm, sondern zwei Skripte. Ohne die folgenden
+Dinge laufen sie nicht. Die beiden Dokumente sind voneinander unabhängig: der
+Brief braucht nur Python, der Lebenslauf nur Node.
+
+| Wofür | Was genau | |
+|---|---|---|
+| Bewerbungsschreiben | **Python 3.10+** mit `reportlab` und `pillow` | Pflicht |
+| Bewerbungsschreiben | Schrift **Carlito** oder **Calibri** | Pflicht |
+| Lebenslauf | **Node.js 18+**, danach `npm install` | Pflicht |
+| Lebenslauf | Schrift **Montserrat** in fünf Schnitten | Pflicht |
+| .docx öffnen und nachbearbeiten | **Microsoft Word** oder **LibreOffice Writer** | Pflicht |
+| Schriften einbetten | Python plus die TTF-Dateien | empfohlen |
+| .docx nach PDF wandeln | LibreOffice oder Word | empfohlen |
+| Sichtprüfung als Bild | `pypdfium2` (pip) oder poppler-utils | empfohlen |
+
+Zwei Dinge, über die man sonst stolpert:
+
+**Der Lebenslauf ist eine Word-Datei.** Ohne Word oder LibreOffice lässt er
+sich weder ansehen noch korrigieren noch in ein PDF wandeln. Viele
+Bewerbungsportale wollen am Ende ein PDF.
+
+**Ohne die Schriften kommt Unsinn heraus.** Fehlt Carlito, bricht der
+Brief-Generator ab. Fehlt Montserrat, ersetzt Word sie stillschweigend durch
+irgendetwas anderes, und das Layout verschiebt sich. Deshalb der Schritt
+„Schriften einbetten" weiter unten.
+
+Vollständige Installationsbefehle für Windows, Linux und macOS stehen in
+[`docs/setup.md`](docs/setup.md).
+
 ## Schnellstart
 
 ```bash
@@ -39,9 +70,8 @@ cd generator/cv
 node word_cv.js ../../beispiel/cv_beispiel.json ../../ausgabe/CV.docx
 ```
 
-Für das Anschreiben reicht Python. Für den Lebenslauf braucht es zusätzlich
-Node.js und die Schriftfamilie Montserrat. Details in
-[`docs/setup.md`](docs/setup.md).
+Unter Windows heisst der Python-Befehl `python` statt `python3`, und in
+PowerShell braucht es `npm.cmd install` statt `npm install`.
 
 ## Aufbau
 

@@ -11,6 +11,7 @@ Aufruf:  python3 brief_rl.py <brief_daten.py> <ausgabe.pdf>
 """
 
 import importlib.util
+import os
 import sys
 from pathlib import Path
 
@@ -36,8 +37,52 @@ BREITE, HOEHE = A4
 TEXTBREITE = BREITE - RAND_L - RAND_R
 EINZUG = 95 * mm                  # Empfängerblock
 
-pdfmetrics.registerFont(TTFont(SCHRIFT, "/usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf"))
-pdfmetrics.registerFont(TTFont(SCHRIFT + "-Bold", "/usr/share/fonts/truetype/crosextra/Carlito-Bold.ttf"))
+def schrift_suchen(kandidaten):
+    """Erste tatsächlich vorhandene Schriftdatei aus der Liste zurückgeben."""
+    for eintrag in kandidaten:
+        if not eintrag:
+            continue
+        pfad = Path(eintrag).expanduser()
+        if pfad.is_file():
+            return str(pfad)
+    return None
+
+
+# Carlito ist massgleich mit Calibri. Deshalb darf unter Windows Calibri
+# einspringen, ohne dass sich das Layout verschiebt. Eigene Pfade lassen sich
+# über BRIEF_SCHRIFT_REGULAR und BRIEF_SCHRIFT_BOLD vorgeben.
+SCHRIFT_REGULAR = schrift_suchen([
+    os.environ.get("BRIEF_SCHRIFT_REGULAR"),
+    "/usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf",
+    "/usr/share/fonts/truetype/carlito/Carlito-Regular.ttf",
+    "~/.fonts/Carlito-Regular.ttf",
+    "~/Library/Fonts/Carlito-Regular.ttf",
+    "/Library/Fonts/Carlito-Regular.ttf",
+    r"C:\Windows\Fonts\Carlito-Regular.ttf",
+    r"C:\Windows\Fonts\calibri.ttf",
+])
+SCHRIFT_BOLD = schrift_suchen([
+    os.environ.get("BRIEF_SCHRIFT_BOLD"),
+    "/usr/share/fonts/truetype/crosextra/Carlito-Bold.ttf",
+    "/usr/share/fonts/truetype/carlito/Carlito-Bold.ttf",
+    "~/.fonts/Carlito-Bold.ttf",
+    "~/Library/Fonts/Carlito-Bold.ttf",
+    "/Library/Fonts/Carlito-Bold.ttf",
+    r"C:\Windows\Fonts\Carlito-Bold.ttf",
+    r"C:\Windows\Fonts\calibrib.ttf",
+])
+
+if not SCHRIFT_REGULAR or not SCHRIFT_BOLD:
+    sys.exit(
+        "Schrift nicht gefunden.\n"
+        "Carlito installieren (im LibreOffice-Paket enthalten oder bei Google "
+        "Fonts) oder die Pfade über die Umgebungsvariablen "
+        "BRIEF_SCHRIFT_REGULAR und BRIEF_SCHRIFT_BOLD setzen.\n"
+        "Details in docs/setup.md."
+    )
+
+pdfmetrics.registerFont(TTFont(SCHRIFT, SCHRIFT_REGULAR))
+pdfmetrics.registerFont(TTFont(SCHRIFT + "-Bold", SCHRIFT_BOLD))
 
 
 def umbrechen(c, text, breite, fett=False):
