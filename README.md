@@ -92,13 +92,37 @@ beispiel/
   brief_beispiel.py      vollständiges Anschreiben einer erfundenen Person
   cv_beispiel.json       vollständiger Lebenslauf derselben Person
 docs/
+  unterlagen.md          erster Schritt: das Dossier durchsuchen
   regeln.md              Grundregel: nichts erfinden
   stilvorlage.md         wie man die eigene Schreibstimme festhält
   keywords.md            Begriffe aus dem Inserat spiegeln, ohne zu lügen
   setup.md               Installation, Schriften, Stolpersteine
 scripts/
+  unterlagen_lesen.py    Dossier Seite für Seite auslesen
   rauchtest.mjs          erzeugt beide Beispiele und prüft das Ergebnis
 ```
+
+## Der erste Schritt ist nicht das Schreiben
+
+Bevor ein Lebenslauf zugeschnitten wird, werden die Unterlagen durchsucht —
+auch dann, wenn schon eine gepflegte Vorlage existiert. Gerade dann.
+
+```bash
+python scripts/unterlagen_lesen.py ~/Bewerbung/Dossier.pdf -o daten/unterlagen.txt
+```
+
+Das Skript liest PDF, Word, Text und Markdown Seite für Seite aus und meldet,
+welche Seiten keine Textebene haben. Eingescannte Arbeitszeugnisse sind Bilder
+— für ein Bewerbermanagementsystem sind das leere Seiten.
+
+Warum sich das lohnt: In einem Dossier lag auf Seite 8 ein Arbeitszeugnis über
+einen Einsatz, der im Lebenslauf gar nicht vorkam. Darin standen die Sätze
+«sorgfältig und genau» und «das Einhalten von Regeln war für ihn
+selbstverständlich». Für die Stelle, um die es ging, war das der beste Beleg
+im ganzen Dossier.
+
+Danach werden Fragen gestellt, bevor geschrieben wird — welche und warum,
+steht in [`docs/unterlagen.md`](docs/unterlagen.md).
 
 ## Zwei Schalter, die man kennen sollte
 

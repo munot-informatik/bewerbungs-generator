@@ -29,6 +29,11 @@ verbietet.
 einem Arbeitszeugnis oder aus einer wörtlichen Aussage der Bewerberin stammen.
 Gibt es keine Quelle, kommt die Aussage nicht ins Dokument.
 
+Das setzt voraus, dass die Unterlagen auch gelesen wurden. Wer nur den
+Lebenslauf kennt, hält für unbelegt, was zwei Seiten weiter im Dossier
+schwarz auf weiss steht. Der erste Schritt steht deshalb in
+[`unterlagen.md`](unterlagen.md) und kommt vor allem anderen.
+
 **2. Das Inserat ist keine Quelle.** Anforderungen aus einer Stellenausschreibung
 dürfen nicht in Erfahrung umformuliert werden. Nur weil eine Stelle
 «Erfahrung im Sozialversicherungsrecht» verlangt, entsteht sie nicht.
@@ -131,6 +136,13 @@ nachvollziehbar.
 
 Ein Prompt, der diese Regeln durchsetzt:
 
+> Bevor du irgendetwas schreibst: lies alle Unterlagen, die ich dir gegeben
+> habe, nicht nur den Lebenslauf. Notiere, was darin belegt ist und im
+> Lebenslauf fehlt, jeweils mit Datei und Seite. Sag mir, welche Seiten du
+> nicht lesen konntest. Stell mir dann die Fragen aus Schritt 3 von
+> docs/unterlagen.md und warte meine Antworten ab, bevor du anfängst. Dass
+> schon eine Lebenslauf-Vorlage besteht, ist kein Grund, nicht zu suchen.
+>
 > Jede Aussage in Lebenslauf und Brief muss aus meinen Unterlagen oder meinen
 > eigenen Worten stammen. Die Stellenausschreibung ist keine Quelle. Formuliere
 > keine Anforderungen aus dem Inserat in Erfahrung um, die ich nicht habe.

@@ -1,5 +1,9 @@
 # Setup
 
+Der erste Schritt einer Bewerbung ist das Durchsuchen der Unterlagen, nicht das
+Erzeugen von Dokumenten. Der Ablauf dazu steht in
+[`unterlagen.md`](unterlagen.md); gebraucht wird dafür Python mit `pypdfium2`.
+
 ## Voraussetzungen
 
 Vier Dinge, ohne die nichts läuft: **Python**, **Node.js**, die **Schriften**

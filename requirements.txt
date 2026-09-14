@@ -1,2 +1,5 @@
 reportlab>=4.0
 pillow>=10.0
+# Liest Dossiers aus (scripts/unterlagen_lesen.py) und rendert PDF-Seiten für
+# die Sichtprüfung. Reiner pip-Install, keine Systemabhängigkeiten wie poppler.
+pypdfium2>=4.0

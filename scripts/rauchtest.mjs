@@ -109,6 +109,24 @@ if (!python) {
     pruefeDatei(briefZiel, 5, "Anschreiben erzeugt, Ausgabeordner selbst angelegt");
   }
 
+  // Unterlagen einlesen: an einer Datei aus dem Repository selbst geprüft.
+  const unterlagenZiel = path.join(TEMP, "unterordner3", "unterlagen.txt");
+  const ru = spawnSync(python, [
+    path.join(WURZEL, "scripts", "unterlagen_lesen.py"),
+    path.join(WURZEL, "docs", "regeln.md"),
+    "-o", unterlagenZiel,
+  ], { encoding: "utf8" });
+
+  if (ru.status !== 0 && /pypdfium2/.test(ru.stdout + ru.stderr)) {
+    melde("skip", "Unterlagen eingelesen", "pypdfium2 nicht installiert");
+  } else if (ru.status !== 0) {
+    melde("fehler", "Unterlagen eingelesen", (ru.stderr || "").trim().split("\n").pop());
+  } else if (!fs.existsSync(unterlagenZiel) || !/Quellenpflicht/.test(fs.readFileSync(unterlagenZiel, "utf8"))) {
+    melde("fehler", "Unterlagen eingelesen", "Inhalt fehlt in der Ausgabedatei");
+  } else {
+    melde("ok", "Unterlagen eingelesen, Ausgabeordner selbst angelegt");
+  }
+
   // Jede dokumentierte Grafikvariante muss auch tatsächlich zeichnen.
   const daten = fs.readFileSync(path.join(WURZEL, "beispiel", "brief_beispiel.py"), "utf8");
   const groessen = {};
