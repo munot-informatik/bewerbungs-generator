@@ -4,7 +4,7 @@ ausgabe/
 
 # Persönliche Bilddateien - Platzhalter im Repo, echte Dateien nicht
 generator/unterschrift_echt.png
-generator/nele/foto_echt.png
+generator/cv/foto_echt.png
 
 # Abhängigkeiten
 node_modules/

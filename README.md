@@ -26,7 +26,7 @@ Geschäftsbrief.
 ## Schnellstart
 
 ```bash
-git clone https://github.com/<dein-account>/bewerbungs-generator.git
+git clone https://github.com/mardoommo/bewerbungs-generator.git
 cd bewerbungs-generator
 
 # Bewerbungsschreiben als PDF
