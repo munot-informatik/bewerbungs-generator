@@ -75,7 +75,7 @@ Vollständige Installationsbefehle für Windows, Linux und macOS stehen in
 ## Schnellstart
 
 ```bash
-git clone https://github.com/mardoommo/bewerbungs-generator.git
+git clone https://github.com/munot-informatik/bewerbungs-generator.git
 cd bewerbungs-generator
 
 # Bewerbungsschreiben als PDF
